@@ -13,13 +13,19 @@ class CustomUser(AbstractUser):
 
 
 class Author(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     biography = models.TextField()
     picture = models.ImageField(upload_to='author_pics/', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return self.name
+
+
+class Publisher(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
 
 class Genre(models.Model):
@@ -33,7 +39,10 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     genres = models.ManyToManyField(Genre)
+    summary = models.TextField(null=True)
+    pages = models.IntegerField(default=1)
     published_date = models.DateField()
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.FloatField(default=0.0)
     cover = models.ImageField(upload_to='book_cover_pics/', null=True, blank=True)
