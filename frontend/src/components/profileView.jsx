@@ -102,7 +102,7 @@ const ProfileView = () => {
                 <h3>Book Reviews</h3>
                 {reviews.map((review) => (
                     <div key={review.id}>
-                        <h4>{review.book.title}</h4>
+                        <h4><a href={`/book/${review.book.id}`}>{review.book.title}</a></h4>
                         {review.book.cover && <img src={review.book.cover} alt="Book cover"
                                              className="book-cover"/>}
                         <p>{review.review_text}</p>

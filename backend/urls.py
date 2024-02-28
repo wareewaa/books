@@ -16,4 +16,6 @@ urlpatterns = [
     path('api/author/<int:id>/books/', AuthorBookListCreateView.as_view(), name='author-books'),
     path('api/user/<int:id>/', ProfileView.as_view(), name='user-profile'),
     # path('api/register/', register, name='register'),
+path('api/publisher/<int:id>/', PublisherDetailView.as_view(), name='publisher-detail'),
+    path('api/publisher/<int:id>/books/', PublisherBookListCreateView.as_view(), name='publisher-books'),
 ]

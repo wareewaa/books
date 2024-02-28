@@ -8,7 +8,6 @@ import useUserDataService from "./loggedUserDataService.jsx";
 const Header = () => {
     const { isAuthenticated, logout } = useAuth();
     const { user } = useUserDataService();
-    console.log(user.id)
     return (
         <header className="header">
             <div className="logo">Your Logo</div>

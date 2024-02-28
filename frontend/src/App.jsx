@@ -8,6 +8,7 @@ import Login from "./components/login.jsx";
 import {AuthProvider} from "./AuthContext";
 import AuthorView from "./components/authorView.jsx";
 import ProfileView from "./components/profileView.jsx";
+import PublisherView from "./components/publisherView.jsx";
 
 const App = () => {
     return (
@@ -25,6 +26,7 @@ const App = () => {
                             <Route path="/user/:userId" element={<ProfileView/>}/>
                             <Route path="/register" element={<Register/>}/>
                             <Route path="/login" element={<Login/>}/>
+                            <Route path="/publisher/:publisherId" element={<PublisherView/>}/>
                             {/* Add more routes as needed */}
                         </Routes>
                     </main>

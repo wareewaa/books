@@ -112,7 +112,25 @@ class ProfileView(generics.RetrieveAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'id'
-    # def perform_create(self, serializer):
-    #     # Set the book instance when creating a new review
-    #     book_id = self.kwargs.get('id')
-    #     serializer.save(author_id=author_id)
+
+
+class PublisherDetailView(generics.RetrieveAPIView):
+    queryset = Publisher.objects.all()
+    serializer_class = PublisherSerializer
+    lookup_field = 'id'
+
+
+class PublisherBookListCreateView(generics.ListCreateAPIView):
+    serializer_class = BookSerializer
+
+    def get_queryset(self):
+        # Retrieve the book_id from the URL parameter
+        publisher_id = self.kwargs.get('id')
+
+        # Filter reviews based on the book_id
+        return Book.objects.filter(publisher__id=publisher_id)
+
+# def perform_create(self, serializer):
+#     # Set the book instance when creating a new review
+#     book_id = self.kwargs.get('id')
+#     serializer.save(author_id=author_id)

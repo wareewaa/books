@@ -9,10 +9,16 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PublisherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Publisher
+        fields = '__all__'
+
+
 class BookSerializer(serializers.ModelSerializer):
     author = AuthorSerializer()
     genres = serializers.StringRelatedField(many=True)
-    publisher = serializers.StringRelatedField()
+    publisher = PublisherSerializer()
 
     class Meta:
         model = Book

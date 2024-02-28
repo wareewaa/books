@@ -102,7 +102,7 @@ const BookView = () => {
                         <br></br>
                         <p>Genres: {book.genres.join(', ')}</p>
                         <p>Published Date: {book.published_date}</p>
-                        <p>Publisher: {book.publisher}</p>
+                        <p><a href={`/publisher/${book.publisher.id}`}>Publisher: {book.publisher.name}</a></p>
                         <p>Price: {book.price}</p>
                         <p>Rating: {book.rating}</p>
                         <p>Pages: {book.pages}</p>
@@ -126,7 +126,7 @@ const BookView = () => {
                 <h3>Book Reviews</h3>
                 {reviews.map((review) => (
                     <div key={review.id}>
-                        <h4>{review.user.username}</h4>
+                        <h4><a href={`/user/${review.user.id}`}>{review.user.username}</a></h4>
                         {review.user.profile_picture && <img src={review.user.profile_picture} alt="User's picture"
                                              className="author-image"/>}
                         <p>{review.review_text}</p>
