@@ -1,40 +1,27 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
-
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState(localStorage.getItem('token') || null);
 
-  const login = async (username, password) => {
-    const response = await axios.post('http://localhost:8000/api/login/', { username, password });
-    if (response.data) {
-      setCurrentUser(response.data); // Assuming the API returns user data on successful login
-    }
+  const login = (newToken) => {
+    setToken(newToken);
+    localStorage.setItem('token', newToken);
   };
 
   const logout = () => {
-    // Perform logout. This could involve removing user data from state and any tokens from storage.
-    setCurrentUser(null);
-    // Optionally, redirect to login or another page.
+    setToken(null);
+    localStorage.removeItem('token');
   };
 
-  useEffect(() => {
-    // Optionally, check local storage or session for an existing login session/token on app load
-    setLoading(false);
-  }, []);
+  return (
+    <AuthContext.Provider value={{ isAuthenticated: !!token, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
-  const value = {
-    currentUser,
-    login,
-    logout,
-    loading
-  };
-
-  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
+export const useAuth = () => {
+  return useContext(AuthContext);
 };

@@ -1,49 +1,40 @@
-import {useState} from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from './components/Header.jsx';
-import { Home, Top100, Profile } from './components/placeholders';
+import {Home, Top100, Profile} from './components/placeholders';
 import BookView from "./components/bookView.jsx";
 import Register from "./components/register.jsx";
 import Login from "./components/login.jsx";
+import {AuthProvider} from "./AuthContext";
+import AuthorView from "./components/authorView.jsx";
+import ProfileView from "./components/profileView.jsx";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Set the actual authentication status
-  return (
-    <Router>
-      <div>
-        <Header isAuthenticated={isAuthenticated}/>
-        <main>
-          <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/top-100" element={<Top100/>} />
-            <Route path="/profile" element={<Profile/>} />
-            <Route path="/book/:bookId" element={<BookView/>} />
-            <Route path="/register" element={<Register/>} />
-            <Route path="/login" element={<Login/>} />
-            {/* Add more routes as needed */}
-          </Routes>
-        </main>
-      </div>
-    </Router>
-  );
+    return (
+        <AuthProvider>
+            <Router>
+                <div>
+                    <Header/>
+                    <main>
+                        <Routes>
+                            <Route path="/" element={<Home/>}/>
+                            <Route path="/top-100" element={<Top100/>}/>
+                            <Route path="/profile" element={<Profile/>}/>
+                            <Route path="/book/:bookId" element={<BookView/>}/>
+                            <Route path="/author/:authorId" element={<AuthorView/>}/>
+                            <Route path="/user/:userId" element={<ProfileView/>}/>
+                            <Route path="/register" element={<Register/>}/>
+                            <Route path="/login" element={<Login/>}/>
+                            {/* Add more routes as needed */}
+                        </Routes>
+                    </main>
+                </div>
+            </Router>
+        </AuthProvider>
+    );
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // import { useState } from 'react'

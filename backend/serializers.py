@@ -22,7 +22,7 @@ class BookSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ['id', 'username', 'profile_picture']
+        fields = ['id', 'username', 'profile_picture', 'bio']
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -57,6 +57,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
 
 class BookReviewSerializer(serializers.ModelSerializer):
+    book = BookSerializer()
     user = UserSerializer()
 
     class Meta:

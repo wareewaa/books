@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Assuming you are using React Router
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Header.css';
+import { useAuth } from "../AuthContext.jsx";
+import useUserDataService from "./loggedUserDataService.jsx";
 
-const Header = ({ isAuthenticated }) => {
+const Header = () => {
+    const { isAuthenticated, logout } = useAuth();
+    const { user } = useUserDataService();
+    console.log(user.id)
     return (
         <header className="header">
             <div className="logo">Your Logo</div>
@@ -11,11 +16,15 @@ const Header = ({ isAuthenticated }) => {
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/top-100">Top 100</Link></li>
-                    {/* Conditional rendering for authentication */}
                     {isAuthenticated ? (
                         <>
-                            <li><Link to="/profile">Profile</Link></li>
-                            <li><Link to="/logout">Logout</Link></li>
+                            {/* Use optional chaining to handle cases where user may be null or undefined */}
+                            <li><Link to={user?.id ? `/user/${user.id}` : '/profile'}>Profile</Link></li>
+                            <li>
+                                <button type="button" onClick={logout}>
+                                    Logout
+                                </button>
+                            </li>
                         </>
                     ) : (
                         <>
@@ -28,7 +37,5 @@ const Header = ({ isAuthenticated }) => {
         </header>
     );
 };
-Header.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-};
+
 export default Header;

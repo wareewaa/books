@@ -16,7 +16,8 @@ const BookView = () => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api/books/${bookId}/`);
                 setBook(response.data)
-                console.log("ESSUNIA:    " + response.data.cover)
+                console.log("Ryciuk Filip:    " + response.data)
+                console.log("FILIP RYCIUK:    " + response.data.title)
             } catch (error) {
                 console.error('Error fetching book:', error);
             }
@@ -27,7 +28,6 @@ const BookView = () => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api/books/${bookId}/reviews`);
                 setReviews(response.data);
-                console.log("YOOOOO:    " + response.data.review.rating)
             } catch (error) {
                 console.error('Error fetching reviews:', error);
             }
@@ -98,7 +98,7 @@ const BookView = () => {
                     </div>
                     <div className="bookContent">
                         <h1>{book.title}</h1>
-                        <p>{book.author.name}</p>
+                        <p><a href={`/author/${book.author.id}`}>{book.author.name}</a></p>
                         <br></br>
                         <p>Genres: {book.genres.join(', ')}</p>
                         <p>Published Date: {book.published_date}</p>
@@ -118,7 +118,7 @@ const BookView = () => {
                                              className="author-image"/>}
                 </div>
                 <div className="authorContent">
-                    <h2>{book.author.name}</h2>
+                    <h2><a href={`/author/${book.author.id}`}>{book.author.name}</a></h2>
                     <p>{renderBio()}</p>
                 </div>
             </div>
