@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from './components/Header.jsx';
-import {Home, Top100, Profile} from './components/placeholders';
+import {Home, Top100s, Profile} from './components/placeholders';
 import BookView from "./components/bookView.jsx";
 import Register from "./components/register.jsx";
 import Login from "./components/login.jsx";
@@ -9,14 +9,17 @@ import {AuthProvider} from "./AuthContext";
 import AuthorView from "./components/authorView.jsx";
 import ProfileView from "./components/profileView.jsx";
 import PublisherView from "./components/publisherView.jsx";
+import Top100 from "./components/top100.jsx";
+import BookSearch from "./components/bookSearch.jsx";
 
 const App = () => {
     return (
         <AuthProvider>
             <Router>
                 <div>
-                    <Header/>
+
                     <main>
+                        <Header/>
                         <Routes>
                             <Route path="/" element={<Home/>}/>
                             <Route path="/top-100" element={<Top100/>}/>
@@ -26,6 +29,7 @@ const App = () => {
                             <Route path="/user/:userId" element={<ProfileView/>}/>
                             <Route path="/register" element={<Register/>}/>
                             <Route path="/login" element={<Login/>}/>
+                            <Route path="/advanced_search" element={<BookSearch/>}/>
                             <Route path="/publisher/:publisherId" element={<PublisherView/>}/>
                             {/* Add more routes as needed */}
                         </Routes>

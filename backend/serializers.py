@@ -15,6 +15,12 @@ class PublisherSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = '__all__'
+
+
 class BookSerializer(serializers.ModelSerializer):
     author = AuthorSerializer()
     genres = serializers.StringRelatedField(many=True)

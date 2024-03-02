@@ -1,13 +1,11 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from rest_framework import generics, status
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, status, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
-from rest_framework.decorators import api_view
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from .serializers import *
 
 
@@ -130,6 +128,41 @@ class PublisherBookListCreateView(generics.ListCreateAPIView):
         # Filter reviews based on the book_id
         return Book.objects.filter(publisher__id=publisher_id)
 
+
+class BookTop100ViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.order_by('-rating')[:100]
+    serializer_class = BookSerializer
+
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    filterset_fields = ['genres']
+    ordering_fields = ['rating', 'published_date']
+    search_fields = ['title', 'author__name']
+
+
+class BookQuickSearchViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+    filter_backends = [SearchFilter]
+    search_fields = ['title']
+
+
+class AuthorQuickSearchViewSet(viewsets.ModelViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
+    filter_backends = [SearchFilter]
+    search_fields = ['name']
+
+
+class GenreViewSet(viewsets.ModelViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
 # def perform_create(self, serializer):
 #     # Set the book instance when creating a new review
 #     book_id = self.kwargs.get('id')

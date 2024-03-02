@@ -1,0 +1,5 @@
+.genre-checkbox input[type="checkbox"] {
+    font-weight: bold; /* Example: Change font weight for selected labels */
+    background-color: black;
+    color: black;
+}

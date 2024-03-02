@@ -6,7 +6,7 @@ const Home = () => {
     return <div>Home Page</div>;
 };
 
-const Top100 = () => {
+const Top100s = () => {
     //     const [user, setUser] = useState(null);
     // useEffect(() => {
     //     // Fetch book data based on bookId from your API
@@ -119,4 +119,4 @@ const Profile = () => {
     );
 };
 
-export {Home, Top100, Profile};
+export {Home, Top100s, Profile};

@@ -1,7 +1,7 @@
 .header {
   background-color: #660000; /* Your garnet color */
   color: white; /* Text color for links */
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding: 0px 20px; /* Adjust padding as needed */
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
@@ -9,14 +9,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2000; /* Ensure the header stays above other elements on the page */
+  margin-bottom: 20px;
 }
 
 
 .header nav ul {
   list-style-type: none;
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
 .header nav ul li {
