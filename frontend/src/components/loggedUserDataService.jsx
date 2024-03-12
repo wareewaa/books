@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const useUserDataService = () => {
-  const [user, setUser] = useState(null);
+  const [loggedUser, setUser] = useState(null);
 
   const getUserData = async () => {
     const token = localStorage.getItem('token');
@@ -44,7 +44,7 @@ const useUserDataService = () => {
     fetchData();
   }, []); // Run once on mount
 
-  return { user, getUserData };
+  return { loggedUser, getUserData };
 };
 
 export default useUserDataService;

@@ -5,12 +5,17 @@ from . import views
 from .views import *
 
 router = DefaultRouter()
+router.register(r'genres', GenreViewSet)
 router.register(r'top100', BookTop100ViewSet)
 router.register(r'books', BookViewSet)
-router.register(r'genres', GenreViewSet)
-router.register(r'quick_search/book', BookQuickSearchViewSet)
-router.register(r'quick_search/author', AuthorQuickSearchViewSet)
+router.register(r'books_add', AddBookViewSet)
+router.register(r'books_add_cover', AddBookCoverViewSet)
 
+router.register(r'quick_search/book', BookQuickSearchViewSet)
+router.register(r'authors', AuthorViewSet)
+router.register(r'book-reviews', BookReviewViewSet, basename='book-review')
+router.register(r'profile', CustomUserEditViewSet, basename='profile')
+router.register(r'publisher', PublisherViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
     path('api/books/<int:id>/reviews/', BookReviewListCreateView.as_view(), name='book-reviews'),
@@ -24,4 +29,6 @@ urlpatterns = [
     path('api/user/<int:id>/', ProfileView.as_view(), name='user-profile'),
     path('api/publisher/<int:id>/', PublisherDetailView.as_view(), name='publisher-detail'),
     path('api/publisher/<int:id>/books/', PublisherBookListCreateView.as_view(), name='publisher-books'),
+    path('api/user/update/', CustomUserUpdate.as_view(), name='user-update'),
+    path('api/getReviewId/<int:book_id>/', ReviewIdByBookIdView.as_view(), name='review-id')
 ]

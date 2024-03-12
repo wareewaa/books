@@ -1,0 +1,24 @@
+.formContainerRegister {
+    width: 100%;
+    max-width: 300px; /* Set a max-width for the form */
+    margin: 40px auto; /* Center the form on the page vertically and horizontally */
+    background-color: #FCF6EC;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for depth */
+    border-radius: 8px; /* Optional: rounds the corners for a softer look */
+}
+
+.formContainerRegister input {
+    width: 95%; /* Make inputs fill the form container */
+    padding: 10px;
+    margin-bottom: 20px; /* Add some space between the inputs */
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Optional: rounds the input fields */
+        color: black;
+    background-color: white;
+}
+
+.formContainerRegister Button {
+    width: 100%;
+}

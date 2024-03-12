@@ -6,6 +6,7 @@ from .models import *
 admin.site.register(Author)
 admin.site.register(Book)
 admin.site.register(BookReview)
-admin.site.register(CustomUser)
+admin.site.register(User)
 admin.site.register(Genre)
 admin.site.register(Publisher)
+admin.site.register(CustomList)

@@ -1,0 +1,170 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    /*width: 100%;*/
+    /*min-width: 100vh;*/
+    width: 35vw;
+    align-items: center;
+}
+
+.reviews {
+    width: 100%;
+}
+
+.bookView {
+    /*box-sizing: border-box;*/
+    /*min-width: 100%;*/
+    width: 100%;
+    background-color: #FCF6EC;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 5% auto;
+    /*width: 55%;*/
+    /*margin: 0 auto;*/
+    /*position: relative;*/
+    /*display: flex;*/
+    /*align-items: flex-start;*/
+    /*top: 100px;*/
+    /*left: 0;*/
+    /*right: 0;*/
+
+}
+
+.singleBookView h1 {
+    margin-block-end: 0;
+    margin-block-start: 0;
+}
+
+.singleReview {
+    min-width: 100%;
+    display: flex;
+    align-items: flex-start;
+    background-color: #FCF6EC;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    margin-top: 5%;
+        justify-content: space-between;
+    position: relative; /* Add this to establish a positioning context */
+
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+
+.coverContent {
+    display: flex;
+    align-items: flex-start;
+}
+
+.cover-image {
+    width: 370px;
+    height: auto;
+    margin-right: 40px;
+    border: 2px solid black;
+}
+
+.summaryContainer {
+    /*position: relative;*/
+    overflow: hidden;
+    transition: max-height 2s ease; /* Add a smooth transition effect */
+}
+
+.button {
+    display: block; /* Ensures the button is a block-level element */
+    margin-top: 8px; /* Adds some space above the button */
+    background: none;
+    color: blue;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline; /* Makes it look more like a link than a button */
+}
+
+.button:hover {
+    background-color: transparent;
+}
+
+.aboutAuthor {
+    width: 100%;
+    display: flex;
+
+    background-color: #FCF6EC;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 5% auto;
+    position: relative;
+}
+
+.author-image {
+    height: 200px;
+    width: auto;
+    margin-right: 20px;
+    /*margin-top: 20px;*/
+    border: 2px solid black;
+}
+
+.reviewActions {
+    display: flex;
+    gap: 10px;
+
+}
+
+.reviewData {
+    display: flex;
+}
+
+/* Add styling for edit and delete buttons as needed */
+.editButton, .deleteButton {
+    /*background-color: #3498db;*/
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.editButton:hover, .deleteButton:hover {
+    /*background-color: #2980b9;*/
+}
+
+.stars-container {
+    font-size: 35px;
+}
+
+.stars-review-container {
+    font-size: 28px;
+}
+
+/*.reviewForm {*/
+/*    width: 100%;*/
+/*    height: 200px;*/
+/*    background-color: #ccc;*/
+/*    color: black;*/
+/*    border: 2px solid black;*/
+/*    display: flex;*/
+/*    opacity: 0.5;*/
+/*    overflow: auto;*/
+/*    padding: 20px;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+.rateBookInfo {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;
+    color: black;
+    border: 2px solid black;
+    display: flex;
+    opacity: 0.5;
+    overflow: auto;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}

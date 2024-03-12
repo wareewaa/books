@@ -1,0 +1,64 @@
+.profile {
+    min-width: 100%;
+    display: flex;
+    align-items: flex-start;
+    background-color: #FCF6EC;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    margin-top: 5%;
+    justify-content: space-between;
+    position: relative; /* Add this to establish a positioning context */
+}
+
+.profile-picture {
+    height: 250px;
+    width: auto;
+    margin-right: 20px;
+    /*margin-top: 20px;*/
+    border: 2px solid black;
+}
+
+.profileData {
+    display: flex;
+}
+
+.profileActions {
+    display: flex;
+    gap: 10px;
+
+}
+
+.editButton, .deleteButton {
+    /*background-color: #3498db;*/
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.book-cover {
+    height: 250px;
+    width: auto;
+    margin-right: 20px;
+    /*margin-top: 20px;*/
+    border: 2px solid black;
+}
+
+.profileReviewsContainer {
+    width: 100%;
+
+}
+
+.profileSingleReview {
+    min-width: 100%;
+    display: flex;
+    align-items: flex-start;
+    background-color: #FCF6EC;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    margin-top: 5%;
+    justify-content: space-between;
+    position: relative; /* Add this to establish a positioning context */
+}

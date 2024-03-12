@@ -3,11 +3,17 @@ import {useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import {useAuth} from "../AuthContext.jsx";
+import "./styles/registerform.css"
+
+const initialFormData = {
+    username: '',
+    password: '',
+};
 
 const Login = () => {
     const navigate = useNavigate();
-    const { login } = useAuth();  // Use the useAuth hook to access login function
-
+    const {login} = useAuth();  // Use the useAuth hook to access login function
+    const [passwordError, setPasswordError] = useState('');
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -22,19 +28,19 @@ const Login = () => {
 
         try {
             const response = await axios.post('http://localhost:8000/api/login/', formData);
-            console.log(response);
-                  login(response.data.token);
-            console.log('Login successful', response.data.user);
-            // Redirect to a different page after successful login (e.g., home page)
-
+            login(response.data.token);
             navigate('/');
+            // window.location.reload()
+
         } catch (error) {
+            setFormData(initialFormData);
+            setPasswordError("Invalid credentials")
             console.error(error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="formContainerRegister" onSubmit={handleSubmit}>
             <label>
                 Username:
                 <input
@@ -56,6 +62,7 @@ const Login = () => {
                     required
                 />
             </label>
+            {passwordError && <div style={{color: 'red'}}>{passwordError}</div>}
 
             <button type="submit">Login</button>
         </form>

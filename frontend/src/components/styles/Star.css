@@ -1,0 +1,27 @@
+.star {
+    cursor: pointer;
+    font-size: 45px;
+    color: transparent; /* Make the star color transparent */
+    text-shadow: 0 0 0 black; /* Create the black border effect */
+}
+
+.rated {
+    color: gold;
+    text-shadow: 0 0 2px black; /* Optional: Add a shadow for a glowing effect */
+    font-size: 45px;
+}
+
+.notLogged{
+    color:grey;
+}
+.star:not(.rated) {
+    -webkit-text-stroke: 1px black; /* Define the stroke for webkit browsers */
+    text-stroke: 1px black; /* Define the stroke for other browsers that support it */
+    color: white; /* Set the fill color to white */
+}
+
+.reviewStarStyle {
+    color: gold;
+    text-shadow: 0 0 2px black;
+    font-size: 30px;
+}

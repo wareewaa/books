@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
-
+import Star from "./Star.jsx";
+import './styles/author.css'
 const AuthorView = () => {
     const {authorId} = useParams();
     const [author, setAuthor] = useState(null);
@@ -58,35 +59,26 @@ const AuthorView = () => {
         );
     };
 
+    const renderStars = (book) => {
+        return (
+            <div className="stars-container">
+                {/*{[...Array(10)].map((star, index) => (*/}
+
+
+                {/*))}*/}
+                <Star rated={true}/>
+               <span className="rating">{book.rating}/10 </span>
+                <span className="rating-amount">({book.rating_amount})</span>
+            </div>
+        );
+    };
+
 
     if (!author) {
         return <div>Loading...</div>;
     }
     return (
         <div className="page">
-            {/*<div className="bookView">*/}
-            {/*    /!* Image Container *!/*/}
-            {/*    <div className="coverContent">*/}
-            {/*        <div className="cover">*/}
-            {/*            {book.cover &&*/}
-            {/*                <img src={book.cover} alt="Book Cover" className="cover-image"/>}*/}
-            {/*        </div>*/}
-            {/*        <div className="bookContent">*/}
-            {/*            <h1>{book.title}</h1>*/}
-            {/*            <p>{book.author.name}</p>*/}
-            {/*            <br></br>*/}
-            {/*            <p>Genres: {book.genres.join(', ')}</p>*/}
-            {/*            <p>Published Date: {book.published_date}</p>*/}
-            {/*            <p>Publisher: {book.publisher}</p>*/}
-            {/*            <p>Price: {book.price}</p>*/}
-            {/*            <p>Rating: {book.rating}</p>*/}
-            {/*            <p>Pages: {book.pages}</p>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*    <div className="summaryContainer">*/}
-            {/*        <p>{renderSummary()}</p>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
             <div className="aboutAuthor">
                 <div className="authorPic">
                     {author.picture && <img src={author.picture} alt="Author's picture"
@@ -100,25 +92,29 @@ const AuthorView = () => {
             <div className="booksContainer">
                 <h3>Books</h3>
                 {books.map((book) => (
-                    <div key={book.id}>
-                        <div className="coverContent">
-                            <div className="cover">
-                                {book.cover &&
-                                    <img src={book.cover} alt="Book Cover" className="cover-image"/>}
-                            </div>
-                            <div className="bookContent">
-                                <h1><a href={`/book/${book.id}`}>{book.title}</a></h1>
-                                <br></br>
-                                <p>Genres: {book.genres.join(', ')}</p>
-                                <p>Published Date: {book.published_date}</p>
-                                <p><a href={`/publisher/${book.publisher.id}`}> Publisher: {book.publisher.name}</a></p>
-                                <p>Price: {book.price}</p>
-                                <p>Rating: {book.rating}</p>
-                                <p>Pages: {book.pages}</p>
-                            </div>
+                <div className="singleBookView" key={book.id}>
+                    <div className="singleCoverContent">
+                        <div className="singleCover">
+                            {book.cover &&
+                                <img src={book.cover} alt="Book Cover" className="singleCover-image"/>}
                         </div>
+                        <div className="bookContent">
+                            {/*<p>{existingReview.id}</p>*/}
+                            <div className="rating">{renderStars(book)}</div>
+                            <h1><a href={`/book/${book.id}`}>{book.title}</a></h1>
+                            <p><a href={`/author/${book.author.id}`}>{book.author.name}</a></p>
+                            <br></br>
+
+                            <p>Published Date: {book.published_date}</p>
+                            <p>Publisher: <a href={`/publisher/${book.publisher.id}`}>{book.publisher.name}</a></p>
+
+                            <p>Pages: {book.pages}</p>
+                            <p>Genres: {book.genres.join(', ')}</p>
+                        </div>
+
                     </div>
-                ))}
+                </div>
+            ))}
             </div>
         </div>
     );

@@ -1,0 +1,74 @@
+.formContainerSearch {
+    display: flex;
+    flex-direction: column;
+    width: 750px;
+    /*max-width: 500px; !* Set a max-width for the form *!*/
+    margin: 40px auto; /* Center the form on the page vertically and horizontally */
+    background-color: #FCF6EC;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for depth */
+    border-radius: 8px; /* Optional: rounds the corners for a softer look */
+}
+
+.formContainerSearch input[type="text"] {
+    width: 96%; /* Make inputs fill the form container */
+    padding: 10px;
+
+    margin-bottom: 20px; /* Add some space between the inputs */
+    color: black;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Optional: rounds the input fields */
+}
+
+
+.genres-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create three even columns */
+    gap: 0px; /* Add some gap between the columns and rows */
+}
+
+.genre-checkbox {
+    display: flex;
+    /*align-items: center;*/
+    /*margin-right: 30%;*/
+    /*margin-bottom: 8px;*/
+}
+
+/*.genre-checkbox {*/
+/*    width: 10%;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    align-items: baseline  ;*/
+/*    margin-bottom:0;*/
+/*    padding: 0;*/
+/*    border: none;*/
+/*    border-radius: unset;*/
+
+/*}*/
+
+.genre-checkbox input {
+    margin-right: 8px;
+}
+.formContainerSearch Button {
+    width: 100%;
+}
+
+
+
+/* Styling for sort select */
+label[for="sort-select"] {
+    margin-bottom: 8px;
+}
+
+.formContainerSearch select {
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+

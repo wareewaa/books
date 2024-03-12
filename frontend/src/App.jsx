@@ -1,7 +1,7 @@
-import React from 'react';
+
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from './components/Header.jsx';
-import {Home, Top100s, Profile} from './components/placeholders';
+// import {Home, Profile} from './components/placeholders';
 import BookView from "./components/bookView.jsx";
 import Register from "./components/register.jsx";
 import Login from "./components/login.jsx";
@@ -11,19 +11,19 @@ import ProfileView from "./components/profileView.jsx";
 import PublisherView from "./components/publisherView.jsx";
 import Top100 from "./components/top100.jsx";
 import BookSearch from "./components/bookSearch.jsx";
-
+import BookReviewForm from "./components/bookReviewForm.jsx";
+import AdminPanel from "./components/AdminPanel.jsx";
+import Home from "./components/home"
 const App = () => {
     return (
         <AuthProvider>
             <Router>
-                <div>
-
                     <main>
-                        <Header/>
+                <Header/>
                         <Routes>
                             <Route path="/" element={<Home/>}/>
                             <Route path="/top-100" element={<Top100/>}/>
-                            <Route path="/profile" element={<Profile/>}/>
+                            {/*<Route path="/profile" element={<Profile/>}/>*/}
                             <Route path="/book/:bookId" element={<BookView/>}/>
                             <Route path="/author/:authorId" element={<AuthorView/>}/>
                             <Route path="/user/:userId" element={<ProfileView/>}/>
@@ -31,10 +31,11 @@ const App = () => {
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/advanced_search" element={<BookSearch/>}/>
                             <Route path="/publisher/:publisherId" element={<PublisherView/>}/>
+                            <Route path="/book_review" element={<BookReviewForm/>}/>
+                            <Route path="/admin_panel" element={<AdminPanel/>}/>
                             {/* Add more routes as needed */}
                         </Routes>
                     </main>
-                </div>
             </Router>
         </AuthProvider>
     );

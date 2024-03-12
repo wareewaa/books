@@ -1,0 +1,99 @@
+.adminPanel {
+    width: 40vw;
+}
+.navSection {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.adminForm {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /*max-width: 500px; !* Set a max-width for the form *!*/
+    margin: 40px auto; /* Center the form on the page vertically and horizontally */
+    background-color: #FCF6EC;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for depth */
+    border-radius: 8px; /* Optional: rounds the corners for a softer look */
+}
+.adminForm input{
+    color: black;
+    background-color: white;
+
+}
+.adminForm textarea{
+        color: black;
+    background-color: white;
+}
+
+.adminForm input[type="text"] {
+    width: 96%; /* Make inputs fill the form container */
+    padding: 10px;
+
+    margin-bottom: 20px; /* Add some space between the inputs */
+    color: black;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Optional: rounds the input fields */
+}
+
+.adminForm input [type="number"] {
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+.adminForm input [type="textarea"] {
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+.adminForm input [type="date" i] {
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+
+
+
+.genre-checkbox input {
+    margin-right: 8px;
+}
+
+.adminForm Button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+/* Styling for sort select */
+label[for="sort-select"] {
+    margin-bottom: 8px;
+}
+
+.adminForm select {
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+

@@ -3,9 +3,9 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 
 
-class CustomUser(AbstractUser):
+class User(AbstractUser):
     is_moderator = models.BooleanField(default=False)
-    profile_picture = models.ImageField(upload_to='user_profile_pics/', null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='user_profile_pics/', default="default-avatar-icon-of-social-media-user-vector.jpg")
     bio = models.TextField(blank=True)
 
     def __str__(self):
@@ -15,7 +15,7 @@ class CustomUser(AbstractUser):
 class Author(models.Model):
     name = models.CharField(max_length=100)
     biography = models.TextField()
-    picture = models.ImageField(upload_to='author_pics/', null=True, blank=True)
+    picture = models.ImageField(upload_to='author_pics/', default="default-avatar-icon-of-social-media-user-vector.jpg")
 
     def __str__(self):
         return self.name
@@ -23,6 +23,7 @@ class Author(models.Model):
 
 class Publisher(models.Model):
     name = models.CharField(max_length=50)
+    description = models.TextField(null=True)
 
     def __str__(self):
         return self.name
@@ -43,9 +44,9 @@ class Book(models.Model):
     pages = models.IntegerField(default=1)
     published_date = models.DateField()
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.FloatField(default=0.0)
-    cover = models.ImageField(upload_to='book_cover_pics/', null=True, blank=True)
+    rating_amount = models.IntegerField(default=0)
+    cover = models.ImageField(upload_to='book_cover_pics/', default="default cover.jpg", null=True)
 
     def __str__(self):
         return self.title
@@ -54,9 +55,23 @@ class Book(models.Model):
 class BookReview(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     book = models.ForeignKey('Book', on_delete=models.CASCADE)
-    review_text = models.TextField()
+    review_text = models.TextField(blank=True)
     rating = models.IntegerField()
 
     def __str__(self):
         return f"{self.user.username} - {self.book.title} Review"
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'book'], name='unique_review_per_book')
+        ]
+
+
+class CustomList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    books = models.ManyToManyField(Book)
+
+    def __str__(self):
+        return self.name
 

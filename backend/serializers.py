@@ -31,10 +31,29 @@ class BookSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AddBookSerializer(serializers.ModelSerializer):
+    genres = serializers.PrimaryKeyRelatedField(queryset=Genre.objects.all(), many=True)
+
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+
+class AddBookCoverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['cover']
+
+
+# def validate(self, validated_data):
+#     print(validated_data)
+#     return validated_data
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ['id', 'username', 'profile_picture', 'bio']
+        fields = ['id', 'username', 'profile_picture', 'bio', 'is_moderator']
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -69,6 +88,16 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
 
 class BookReviewSerializer(serializers.ModelSerializer):
+    # book = BookSerializer()
+    # user = UserSerializer()
+
+    class Meta:
+        model = BookReview
+        fields = '__all__'
+        read_only_fields = ("user",)
+
+
+class BookReviewListSerializer(serializers.ModelSerializer):
     book = BookSerializer()
     user = UserSerializer()
 
@@ -86,3 +115,9 @@ class CustomUserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = get_user_model().objects.create_user(**validated_data)
         return user
+
+
+class CustomUserEditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'is_moderator', 'profile_picture', 'bio']
